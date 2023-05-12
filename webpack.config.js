@@ -34,6 +34,26 @@ const webCONFIG = {
   entry: {
     app: "./src/app.js",
   },
+  output: {
+    path: path.resolve(__dirname, "src"),
+
+    filename: "bundle.js",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          // 'imports?document=this',
+
+          // 'react-hot',
+          "babel-loader",
+          //,'jsx-loader'
+        ],
+      },
+      { test: /\.json$/, use: "json-loader" },
+    ],
+  },
   devServer: {
     static: {
       directory: path.join(__dirname, "src"),
@@ -50,8 +70,8 @@ const nodeCONFIG = {
   },
   output: {
     path: path.resolve(__dirname, "build"),
-    
-filename: "[name].bundle.js",
+
+    filename: "[name].bundle.js",
   },
   externals: [nodeModules],
   module: {
@@ -76,11 +96,11 @@ filename: "[name].bundle.js",
         blocking: true,
         parallel: false,
       },
-      onBuildEnd: {
-        scripts: ["npm run dev"],
-        blocking: false,
-        parallel: true,
-      },
+      // onBuildEnd: {
+      //   scripts: ["npm run dev"],
+      //   blocking: false,
+      //   parallel: true,
+      // },
     }),
     new Dotenv(),
     new webpack.DefinePlugin({
