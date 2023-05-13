@@ -118,13 +118,13 @@ function initWebGLOverlayView(map) {
   webGLOverlayView.setMap(map);
 }
 function iwClick(lat, lng) {
-  fetch("https://dastaan.onrender.com/mapcoordinates", {
+  fetch("https://dastaantest-production.up.railway.app/mapcoordinates", {
     method: "POST",
     body: JSON.stringify({ lat: lat, lng: lng }),
     headers: { "Content-Type": "application/json" },
   })
     .then((response) => {
-      const url = `https://dastaan.onrender.com/storiesviamap?lat=${lat}&lng=${lng}`;
+      const url = `https://dastaantest-production.up.railway.app/storiesviamap?lat=${lat}&lng=${lng}`;
       window.location.replace(url);
     })
 
@@ -197,7 +197,7 @@ function iwClick(lat, lng) {
   });
   // GET ALL STORIES AND LOCATION_DATA
   let Locations = [];
-  fetch("https://dastaan.onrender.com/locationData")
+  fetch("https://dastaantest-production.up.railway.app/locationData")
     .then((response) => response.json())
     .then((data) => {
       // Access lat and long data from the JSON response
